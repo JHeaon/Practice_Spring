@@ -32,10 +32,16 @@ public class ScheduleService {
     }
 
 
+    public ScheduleReponseDto getSchedule(Long id) {
+        return new ScheduleReponseDto(findSchedule(id));
+    }
+
     @Transactional
     public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
+
         Schedule schedule = findSchedule(id);
         schedule.update(requestDto);
+
         return id;
     }
 
