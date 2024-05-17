@@ -40,6 +40,12 @@ public class ScheduleService {
     }
 
 
+    public Long deleteSchedule(Long id) {
+        Schedule schedule = findSchedule(id);
+        scheduleRepository.delete(schedule);
+        return id;
+    }
+
     private Schedule findSchedule(Long id) {
         return scheduleRepository.findById(id).orElseThrow(() -> {
             throw new IllegalArgumentException("선택한 일정이 존재하지 않습니다.");
