@@ -1,11 +1,10 @@
 package com.sparta.practice_spring.entity;
 
+import com.sparta.practice_spring.dto.ScheduleRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.sql.Time;
 
 @Entity // JPA가 관리할 수 있는 Entity 클래스 지정
 @Getter
@@ -29,12 +28,12 @@ public class Schedule extends Timestamped {
     @Column(name = "password", nullable = false)
     private String password;
 
-
-
-
-
-
-
+    public Schedule(ScheduleRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
+        this.manager = requestDto.getManager();
+        this.password = requestDto.getPassword();
+    }
 
 }
 
