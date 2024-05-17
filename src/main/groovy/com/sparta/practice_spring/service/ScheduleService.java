@@ -23,12 +23,14 @@ public class ScheduleService {
         return new ScheduleReponseDto(schedule);
     }
 
-    public List<ScheduleReponseDto> getSchdules() {
+    public List<ScheduleReponseDto> getSchedules() {
         return scheduleRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
                 .map(ScheduleReponseDto::new)
                 .toList();
     }
+
+
 
 
 }
