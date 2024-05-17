@@ -38,10 +38,12 @@ public class ScheduleService {
 
     @Transactional
     public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
-
         Schedule schedule = findSchedule(id);
-        schedule.update(requestDto);
-
+        if(schedule.getPassword().equals(requestDto.getPassword())){
+            schedule.update(requestDto);
+        } else {
+            throw new IllegalArgumentException("비밀번호가 다릅니다.");
+        }
         return id;
     }
 
