@@ -6,6 +6,8 @@ import com.sparta.practice_spring.entity.Schedule;
 import com.sparta.practice_spring.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleService {
 
@@ -20,4 +22,13 @@ public class ScheduleService {
         Schedule saveSchedule = scheduleRepository.save(schedule);
         return new ScheduleReponseDto(schedule);
     }
+
+    public List<ScheduleReponseDto> getSchdules() {
+        return scheduleRepository.findAllByOrderByCreatedAtDesc()
+                .stream()
+                .map(ScheduleReponseDto::new)
+                .toList();
+    }
+
+
 }

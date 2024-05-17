@@ -3,8 +3,11 @@ package com.sparta.practice_spring.controller;
 import com.sparta.practice_spring.dto.ScheduleReponseDto;
 import com.sparta.practice_spring.dto.ScheduleRequestDto;
 import com.sparta.practice_spring.service.ScheduleService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -22,6 +25,9 @@ public class ScheduleController {
         return scheduleService.createSchedule(requestDto);
     }
 
-
+    @GetMapping("/schedules")
+    public List<ScheduleReponseDto> getSchdules(){
+        return scheduleService.getSchdules();
+    }
 
 }
