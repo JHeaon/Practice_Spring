@@ -26,13 +26,15 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedules")
-    public List<ScheduleReponseDto> getSchdules(){
+    public List<ScheduleReponseDto> getSchedules(){
         return scheduleService.getSchedules();
     }
     @PutMapping("/schedules/{id}")
-    public Long update(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto){
+    public Long updateSchedules(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto){
         return scheduleService.updateSchedules(id, scheduleRequestDto);
     }
+
+
 
 
 
