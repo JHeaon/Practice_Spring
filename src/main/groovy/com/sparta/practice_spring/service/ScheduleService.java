@@ -4,6 +4,7 @@ import com.sparta.practice_spring.dto.ScheduleReponseDto;
 import com.sparta.practice_spring.dto.ScheduleRequestDto;
 import com.sparta.practice_spring.entity.Schedule;
 import com.sparta.practice_spring.repository.ScheduleRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
 
-    public ScheduleService(ScheduleRepository scheduleRepository){
+    public ScheduleService(ScheduleRepository scheduleRepository) {
         this.scheduleRepository = scheduleRepository;
     }
 
@@ -31,6 +32,17 @@ public class ScheduleService {
     }
 
 
+    @Transactional
+    public Long updateSchedules(Long id, ScheduleRequestDto requestDto) {
+        Schedule schedule = findSchedule(id);
+        schedule.update(requestDto);
+        return id;
+    }
 
 
+    private Schedule findSchedule(Long id) {
+        return scheduleRepository.findById(id).orElseThrow(() -> {
+            throw new IllegalArgumentException("선택한 일정이 존재하지 않습니다.");
+        });
+    }
 }
