@@ -33,7 +33,7 @@ public class ScheduleService {
 
 
     @Transactional
-    public Long updateSchedules(Long id, ScheduleRequestDto requestDto) {
+    public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
         Schedule schedule = findSchedule(id);
         schedule.update(requestDto);
         return id;
