@@ -48,4 +48,19 @@ public class CommentService {
         comment.update(requestDto);
         return new CommentResponsetDto(comment);
     }
+
+    public CommentResponsetDto deleteComment(Long scheduleId, Long commentId, String username) {
+        scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalArgumentException("해당 id에 맞는 일정 데이터가 없습니다."));
+
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new IllegalArgumentException("해당 id에 맞는 댓글이 없습니다."));
+
+        if(!Objects.equals(comment.getUsername(), username)){
+            throw new IllegalArgumentException("사용자가 일치하지 않습니다.");
+        }
+
+        commentRepository.delete(comment);
+        return new CommentResponsetDto(comment);
+    }
 }

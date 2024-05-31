@@ -26,4 +26,11 @@ public class CommentController {
                                              @RequestBody CommentRequestDto requestDto){
         return commentService.updateComment(scheduleId, commentId, requestDto);
     }
+
+    @PatchMapping("/schedule/{scheduleId}/comment/{commentId}")
+    public CommentResponsetDto deleteComment(@PathVariable("scheduleId") Long scheduleId,
+                                             @PathVariable("commentId") Long commentId,
+                                             String username){
+        return commentService.deleteComment(scheduleId, commentId, username);
+    }
 }
