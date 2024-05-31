@@ -27,7 +27,7 @@ public class CommentController {
         return commentService.updateComment(scheduleId, commentId, requestDto);
     }
 
-    @PatchMapping("/schedule/{scheduleId}/comment/{commentId}")
+    @DeleteMapping("/schedule/{scheduleId}/comment/{commentId}")
     public CommentResponsetDto deleteComment(@PathVariable("scheduleId") Long scheduleId,
                                              @PathVariable("commentId") Long commentId,
                                              String username){
