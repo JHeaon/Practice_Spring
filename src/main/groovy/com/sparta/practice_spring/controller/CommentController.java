@@ -30,7 +30,7 @@ public class CommentController {
     @DeleteMapping("/schedule/{scheduleId}/comment/{commentId}")
     public CommentResponsetDto deleteComment(@PathVariable("scheduleId") Long scheduleId,
                                              @PathVariable("commentId") Long commentId,
-                                             String username){
+                                             @RequestBody String username){
         return commentService.deleteComment(scheduleId, commentId, username);
     }
 }

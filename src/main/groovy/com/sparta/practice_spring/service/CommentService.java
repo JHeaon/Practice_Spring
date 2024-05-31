@@ -41,7 +41,7 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new IllegalArgumentException("해당 id에 맞는 댓글이 없습니다."));
 
-        if (!Objects.equals(comment.getComment(), requestDto.getComment())) {
+        if (!Objects.equals(comment.getUsername(), requestDto.getUsername())) {
             throw new IllegalArgumentException("사용자가 일치하지 않습니다.");
         }
 
@@ -57,6 +57,8 @@ public class CommentService {
                 () -> new IllegalArgumentException("해당 id에 맞는 댓글이 없습니다."));
 
         if(!Objects.equals(comment.getUsername(), username)){
+            System.out.println(comment.getUsername());
+            System.out.println(username);
             throw new IllegalArgumentException("사용자가 일치하지 않습니다.");
         }
 
